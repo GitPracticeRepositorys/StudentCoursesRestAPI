@@ -23,5 +23,7 @@ pipeline {
                   git commit -m "added new change"
                   git push origin main
                   sleep 30s
-
-          }
+                }
+            }
+        }
+    }        
