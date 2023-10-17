@@ -5,8 +5,7 @@ pipeline {
         stage('vcs') {
             steps {
                 script {
-                    git branch: 'develop',
-                        url: 'https://github.com/GitPracticeRepositorys/StudentCoursesRestAPI.git'
+                    checkout([$class: 'GitSCM', branches: [[name: 'develop']], userRemoteConfigs: [[url: 'https://github.com/GitPracticeRepositorys/StudentCoursesRestAPI.git']])
                 }
             }
         }
@@ -18,17 +17,17 @@ pipeline {
                 }
             }
         }
-        stage('Deploy to kubernetes') {
+        stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    sh "cd ~/StudentCoursesRestAPIopsk8s && yq eval -i '.spec.template.spec.containers[0].image = \"shivakrishna99/courses:develop_${BUILD_ID}\" ' ~/StudentCoursesRestAPIopsk8s/deployment.yaml"
-                    sh """
-                      cd ~/StudentCoursesRestAPIopsk8s
-                      git add deployment.yaml
-                      git commit -m "added new change"
-                      git push origin main
-                      sleep 30
-                    """
+                    dir("${WORKSPACE}/StudentCoursesRestAPIopsk8s") {
+                        sh "yq eval -i '.spec.template.spec.containers[0].image = \"shivakrishna99/courses:demo_${BUILD_ID}\"' deployment.yaml"
+                        sh """
+                            git add deployment.yaml
+                            git commit -m "Update container image"
+                            git push origin main
+                        """
+                    }
                 }
             }
         }
