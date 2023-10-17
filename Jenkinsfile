@@ -1,24 +1,23 @@
 pipeline {
     agent { label 'docker-node-1' }
-
+    triggers { pollSCM('* * * * *') }
     stages {
-        stage('Checkout') {
+        stage('vcs') {
             steps {
-                // Checkout the code from the GitHub repository's 'develop' branch
-                checkout([$class: 'GitSCM', branches: [[name: '*/develop']], userRemoteConfigs: [[url: 'https://github.com/GitPracticeRepositorys/StudentCoursesRestAPI.git']]])
+                git branch: 'develop',
+                    url: 'https://github.com/GitPracticeRepositorys/StudentCoursesRestAPI.git'
             }
         }
-
-        stage('Kustomize') {
+        stage('build and deploy') {
             steps {
-                script {
-                    def kustomizePath = tool name: 'kustomize', type: 'Tool Type Name' // Configure your Kustomize tool name
-
-                    dir('path/to/kustomization/directory') {
-                        // Use Kustomize to apply the configuration
-                        sh "${kustomizePath}/kustomize build . | kubectl apply -f -"
-                    }
-                }
+                sh "docker image build -t shivakrishna99/courses:develop-$env.BUILD_ID ."
+                sh "docker image push shivakrishna99/courses:develop-$env.BUILD_ID"
+            }
+        }
+        stage('Kustomize Deploy') {
+            steps {
+                // Use Kustomize to apply the Kubernetes configuration
+                sh "cd deployments/courses && kustomize build . | kubectl apply -f -"
             }
         }
     }
