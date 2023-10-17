@@ -10,7 +10,7 @@ pipeline {
                 }
             }
         }
-        stage('build and deploy') {
+        stage('build and push') {
             steps {
                 script {
                     sh "docker image build -t shivakrishna99/courses:demo_${BUILD_ID} ."
