@@ -13,8 +13,8 @@ pipeline {
         stage('build and deploy') {
             steps {
                 script {
-                    sh "docker image build -t shivakrishna99/courses:develop-${env.BUILD_ID} ."
-                    sh "docker image push shivakrishna99/courses:develop-${env.BUILD_ID}"
+                    sh "docker image build -t shivakrishna99/courses:demo_${BUILD_ID} ."
+                    sh "docker image push shivakrishna99/courses:demo_${BUILD_ID}"
                 }
             }
         }
