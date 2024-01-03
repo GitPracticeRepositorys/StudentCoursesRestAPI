@@ -18,8 +18,8 @@ pipeline {
             agent { label 'docker-node' }
             steps {
                 // Use Kustomize to apply the Kubernetes configuration
-                sh "cd deployments/courses/overlays/develop && kustomize edit set image courses=shaikkhajaibrahim/courses:develop-$env.BUILD_ID"
-                sh 'kubectl apply -k deployments/courses/overlays/develop'
+                sh "cd deployments/courses/base"
+                sh 'kubectl apply -k deployments/courses/base/kustomization.yaml'
             }
         }
     }
