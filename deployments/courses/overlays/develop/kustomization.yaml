@@ -4,6 +4,6 @@ kind: Kustomization
 images:
 - name: courses
   newName: shaikkhajaibrahim/courses
-  newTag: develop-20
+  newTag: develop-25
 
 # Other configurations...
