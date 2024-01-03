@@ -2,7 +2,5 @@
 resources:
 - ../../base
 namePrefix: develop-
-images:
-  - name: courses
-    newName: shivakrishna99/courses
-    newTag: develop-latest
+spec:
+  replicas: 5
