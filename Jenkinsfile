@@ -18,7 +18,6 @@ pipeline {
             agent { label 'docker-node' }
             steps {
                 // Use Kustomize to apply the Kubernetes configuration
-                sh "docker image pull shivakrishna99/courses:develop-$env.BUILD_ID"
                 sh "kubectl apply -f deployment.yaml"
                 sh "kubectl apply -f service.yaml"
             }
