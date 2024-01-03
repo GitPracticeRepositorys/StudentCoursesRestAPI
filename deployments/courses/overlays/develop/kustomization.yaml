@@ -1,6 +1,9 @@
----
-resources:
-- ../../base
-namePrefix: develop-
-spec:
-  replicas: 5
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+images:
+- name: courses
+  newName: shaikkhajaibrahim/courses
+  newTag: develop-20
+
+# Other configurations...
