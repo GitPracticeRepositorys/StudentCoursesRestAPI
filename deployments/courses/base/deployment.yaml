@@ -25,7 +25,7 @@ spec:
         version: dev1.0
     spec:
       containers:
-        - image: courses
+        - image: shivakrishna99/courses
           name: courses-container
           ports:
             - containerPort: 8080
