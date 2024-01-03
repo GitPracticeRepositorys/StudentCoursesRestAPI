@@ -2,8 +2,11 @@ resources:
 - ../../base
 namePrefix: develop-
 images:
-- name: courses
+- name: courses-container
+  image: shivakrishna99/courses:develop-9
   newName: shivakrishna99/courses
   newtag: latest
+  # ... other container configuration ...
+
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
