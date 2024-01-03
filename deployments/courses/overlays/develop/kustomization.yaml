@@ -5,5 +5,7 @@ images:
 - name: courses
   newName: shaikkhajaibrahim/courses
   newTag: develop-20
+spec:
+  replicas: 5
 
 # Other configurations...
