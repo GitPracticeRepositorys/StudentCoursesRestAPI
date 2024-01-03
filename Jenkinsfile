@@ -19,7 +19,7 @@ pipeline {
             steps {
                 // Use Kustomize to apply the Kubernetes configuration
                 sh "cd deployments/courses/base"
-                sh 'kubectl apply -k deployments/courses/base/kustomization.yaml'
+                sh 'kubectl apply -k deployments/courses/base'
             }
         }
     }
