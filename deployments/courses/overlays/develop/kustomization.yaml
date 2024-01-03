@@ -1,12 +1,19 @@
-resources:
-- ../../base
-namePrefix: develop-
-images:
-- name: courses-container
-  image: shivakrishna99/courses:develop-9
-  newName: shivakrishna99/courses
-  newtag: latest
-  # ... other container configuration ...
+# kustomization.yaml
 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
+# Set the base directory where your resources are located
+# Replace 'base' with the actual directory path
+bases:
+- ./base
+
+# Define the resources you want to deploy
+resources:
+- ./overlays/develop
+
+# Set the images for customization
+images:
+- name: shivakrishna99/courses
+  newName: shivakrishna99/courses
+  newTag: latest
