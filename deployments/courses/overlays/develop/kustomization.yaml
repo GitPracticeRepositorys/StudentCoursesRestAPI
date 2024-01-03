@@ -3,7 +3,7 @@ kind: Kustomization
 
 images:
 - name: courses
-  newName: shaikkhajaibrahim/courses
-  newTag: develop-25
+  newName: shivakrishna99/courses
+  newTag: latest
 
 # Other configurations...
