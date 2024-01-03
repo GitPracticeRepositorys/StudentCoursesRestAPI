@@ -18,8 +18,8 @@ pipeline {
             agent { label 'docker-node' }
             steps {
                 // Use Kustomize to apply the Kubernetes configuration
-                sh "cd deployments/courses/base"
-                sh 'kubectl apply -k deployments/courses/base'
+                sh "cd deployments"
+                sh 'kubectl apply -f deployments'
             }
         }
     }
