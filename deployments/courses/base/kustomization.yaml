@@ -4,3 +4,5 @@ kind: Kustomization
 resources:
   - service.yaml
   - deployment.yaml
+patchesStrategicMerge
+  - patch.yaml  # Include any patches specific to dev environment
