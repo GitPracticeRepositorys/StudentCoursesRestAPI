@@ -1,0 +1,12 @@
+# orderpatch.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: courses  # Replace with your deployment name
+spec:
+  replicas: 5  # Update the desired number of replicas
+  template:
+    spec:
+      containers:
+      - name: courses-container # Replace with your container name
+        image: shivakrishna99/courses
